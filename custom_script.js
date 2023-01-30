@@ -10,8 +10,6 @@ import { BokehPass } from 'https://unpkg.com/three@0.145.0/examples/jsm/postproc
 import { MeshSurfaceSampler } from 'https://unpkg.com/three@0.145.0/examples/jsm/math/MeshSurfaceSampler.js'
 import { VignetteShader } from 'https://unpkg.com/three@0.145.0/examples/jsm/shaders/VignetteShader.js';
 import { ShaderPass } from 'https://unpkg.com/three@0.145.0/examples/jsm/postprocessing/ShaderPass.js';
-import { GUI } from 'https://unpkg.com/three@0.145.0/examples/jsm/libs/lil-gui.module.min.js';
-
 
 /////////////////////////////////////////////////////////////////////////
 //// DRACO LOADER TO LOAD DRACO COMPRESSED MODELS FROM BLENDER
@@ -370,22 +368,6 @@ const effectController = {
   maxblur: 0.05
 
 };
-
-const matChanger = function ( ) {
-
-  postprocessing.bokeh.uniforms[ 'focus' ].value = effectController.focus;
-  postprocessing.bokeh.uniforms[ 'aperture' ].value = effectController.aperture * 0.00001;
-  postprocessing.bokeh.uniforms[ 'maxblur' ].value = effectController.maxblur;
-
-};
-
-const gui = new GUI();
-gui.add( effectController, 'focus', 0, 3000.0, 0.01 ).onChange( matChanger );
-gui.add( effectController, 'aperture', 0, 10, 0.01 ).onChange( matChanger );
-gui.add( effectController, 'maxblur', 0.0, 0.05, 0.01 ).onChange( matChanger );
-gui.close();
-
-				matChanger();
 
 /////////////////////////////////////////////////////////////////////////
 //// CUSTOM SHADER ANIMATED BACKGROUND
